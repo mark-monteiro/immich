@@ -41,7 +41,7 @@ export class StorageTemplateCore {
       const source = asset.originalPath;
       const ext = path.extname(source).split('.').pop() as string;
       const sanitized = sanitize(path.basename(filename, `.${ext}`));
-      const rootPath = this.storageCore.getFolderLocation(StorageFolder.LIBRARY, username || asset.ownerId);
+      const rootPath = this.storageCore.getFolderLocation(StorageFolder.LIBRARY, sanitize(username || asset.ownerId));
       const storagePath = this.render(this.storageTemplate, asset, sanitized, ext);
       const fullPath = path.normalize(path.join(rootPath, storagePath));
       let destination = `${fullPath}.${ext}`;
