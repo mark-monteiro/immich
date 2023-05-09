@@ -36,6 +36,11 @@ void main() {
       // TODO
     });
 
+    // String username (default value: '')
+    test('to test the property `username`', () async {
+      // TODO
+    });
+
 
   });
 

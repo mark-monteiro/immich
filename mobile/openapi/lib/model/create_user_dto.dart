@@ -17,6 +17,7 @@ class CreateUserDto {
     required this.password,
     required this.firstName,
     required this.lastName,
+    this.username = '',
   });
 
   String email;
@@ -27,12 +28,15 @@ class CreateUserDto {
 
   String lastName;
 
+  String username;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateUserDto &&
      other.email == email &&
      other.password == password &&
      other.firstName == firstName &&
-     other.lastName == lastName;
+     other.lastName == lastName &&
+     other.username == username;
 
   @override
   int get hashCode =>
@@ -40,10 +44,11 @@ class CreateUserDto {
     (email.hashCode) +
     (password.hashCode) +
     (firstName.hashCode) +
-    (lastName.hashCode);
+    (lastName.hashCode) +
+    (username.hashCode);
 
   @override
-  String toString() => 'CreateUserDto[email=$email, password=$password, firstName=$firstName, lastName=$lastName]';
+  String toString() => 'CreateUserDto[email=$email, password=$password, firstName=$firstName, lastName=$lastName, username=$username]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -51,6 +56,7 @@ class CreateUserDto {
       json[r'password'] = this.password;
       json[r'firstName'] = this.firstName;
       json[r'lastName'] = this.lastName;
+      json[r'username'] = this.username;
     return json;
   }
 
@@ -77,6 +83,7 @@ class CreateUserDto {
         password: mapValueOfType<String>(json, r'password')!,
         firstName: mapValueOfType<String>(json, r'firstName')!,
         lastName: mapValueOfType<String>(json, r'lastName')!,
+        username: mapValueOfType<String>(json, r'username') ?? '',
       );
     }
     return null;

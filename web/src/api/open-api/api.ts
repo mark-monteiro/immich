@@ -898,6 +898,12 @@ export interface CreateUserDto {
      * @memberof CreateUserDto
      */
     'lastName': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateUserDto
+     */
+    'username'?: string;
 }
 /**
  * 
@@ -2400,6 +2406,30 @@ export interface UpdateUserDto {
      * @type {string}
      * @memberof UpdateUserDto
      */
+    'id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateUserDto
+     */
+    'isAdmin'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateUserDto
+     */
+    'shouldChangePassword'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserDto
+     */
+    'username'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserDto
+     */
     'email'?: string;
     /**
      * 
@@ -2419,24 +2449,6 @@ export interface UpdateUserDto {
      * @memberof UpdateUserDto
      */
     'lastName'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserDto
-     */
-    'id': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateUserDto
-     */
-    'isAdmin'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateUserDto
-     */
-    'shouldChangePassword'?: boolean;
 }
 /**
  * 
@@ -2524,6 +2536,12 @@ export interface UserResponseDto {
      * @memberof UserResponseDto
      */
     'lastName': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserResponseDto
+     */
+    'username': string;
     /**
      * 
      * @type {string}
