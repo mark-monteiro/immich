@@ -6,6 +6,7 @@ import {
   newSystemConfigRepositoryMock,
   newUserRepositoryMock,
   systemConfigStub,
+  userEntityStub,
 } from '../../test';
 import { IAssetRepository } from '../asset';
 import { StorageTemplateService } from '../storage-template';
@@ -36,6 +37,7 @@ describe(StorageTemplateService.name, () => {
   describe('handle template migration', () => {
     it('should handle no assets', async () => {
       assetMock.getAll.mockResolvedValue([]);
+      userMock.getList.mockResolvedValue([]);
 
       await sut.handleTemplateMigration();
 
@@ -45,6 +47,7 @@ describe(StorageTemplateService.name, () => {
     it('should handle an asset with a duplicate destination', async () => {
       assetMock.getAll.mockResolvedValue([assetEntityStub.image]);
       assetMock.save.mockResolvedValue(assetEntityStub.image);
+      userMock.getList.mockResolvedValue([userEntityStub.user1]);
 
       when(storageMock.checkFileExists)
         .calledWith('upload/library/user-id/2023/2023-02-23/asset-id.ext')
@@ -62,6 +65,7 @@ describe(StorageTemplateService.name, () => {
         id: assetEntityStub.image.id,
         originalPath: 'upload/library/user-id/2023/2023-02-23/asset-id+1.ext',
       });
+      expect(userMock.getList).toHaveBeenCalled();
     });
 
     it('should skip when an asset already matches the template', async () => {
@@ -71,6 +75,7 @@ describe(StorageTemplateService.name, () => {
           originalPath: 'upload/library/user-id/2023/2023-02-23/asset-id.ext',
         },
       ]);
+      userMock.getList.mockResolvedValue([userEntityStub.user1]);
 
       await sut.handleTemplateMigration();
 
@@ -87,6 +92,7 @@ describe(StorageTemplateService.name, () => {
           originalPath: 'upload/library/user-id/2023/2023-02-23/asset-id+1.ext',
         },
       ]);
+      userMock.getList.mockResolvedValue([userEntityStub.user1]);
 
       await sut.handleTemplateMigration();
 
@@ -99,6 +105,7 @@ describe(StorageTemplateService.name, () => {
     it('should move an asset', async () => {
       assetMock.getAll.mockResolvedValue([assetEntityStub.image]);
       assetMock.save.mockResolvedValue(assetEntityStub.image);
+      userMock.getList.mockResolvedValue([userEntityStub.user1]);
 
       await sut.handleTemplateMigration();
 
@@ -116,6 +123,7 @@ describe(StorageTemplateService.name, () => {
     it('should not update the database if the move fails', async () => {
       assetMock.getAll.mockResolvedValue([assetEntityStub.image]);
       storageMock.moveFile.mockRejectedValue(new Error('Read only system'));
+      userMock.getList.mockResolvedValue([userEntityStub.user1]);
 
       await sut.handleTemplateMigration();
 
@@ -130,6 +138,7 @@ describe(StorageTemplateService.name, () => {
     it('should move the asset back if the database fails', async () => {
       assetMock.getAll.mockResolvedValue([assetEntityStub.image]);
       assetMock.save.mockRejectedValue('Connection Error!');
+      userMock.getList.mockResolvedValue([userEntityStub.user1]);
 
       await sut.handleTemplateMigration();
 
@@ -148,6 +157,7 @@ describe(StorageTemplateService.name, () => {
   it('should handle an error', async () => {
     assetMock.getAll.mockResolvedValue([]);
     storageMock.removeEmptyDirs.mockRejectedValue(new Error('Read only filesystem'));
+    userMock.getList.mockResolvedValue([]);
 
     await sut.handleTemplateMigration();
   });

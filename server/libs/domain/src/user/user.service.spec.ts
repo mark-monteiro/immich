@@ -55,7 +55,7 @@ const adminUser: UserEntity = Object.freeze({
   updatedAt: '2021-01-01',
   tags: [],
   assets: [],
-  username: '',
+  username: 'admin',
 });
 
 const immichUser: UserEntity = Object.freeze({
@@ -72,7 +72,7 @@ const immichUser: UserEntity = Object.freeze({
   updatedAt: '2021-01-01',
   tags: [],
   assets: [],
-  username: '',
+  username: null,
 });
 
 const updatedImmichUser: UserEntity = Object.freeze({
@@ -89,7 +89,7 @@ const updatedImmichUser: UserEntity = Object.freeze({
   updatedAt: '2021-01-01',
   tags: [],
   assets: [],
-  username: '',
+  username: null,
 });
 
 const adminUserResponse = Object.freeze({
@@ -168,6 +168,7 @@ describe(UserService.name, () => {
           profileImagePath: '',
           createdAt: '2021-01-01',
           updatedAt: '2021-01-01',
+          username: 'admin',
         },
       ]);
     });
@@ -357,7 +358,6 @@ describe(UserService.name, () => {
           firstName: 'John',
           lastName: 'Smith',
           password: 'password',
-          username: '',
         }),
       ).rejects.toBeInstanceOf(BadRequestException);
     });
