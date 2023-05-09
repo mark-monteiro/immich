@@ -4,18 +4,21 @@ import {
   newAssetRepositoryMock,
   newStorageRepositoryMock,
   newSystemConfigRepositoryMock,
+  newUserRepositoryMock,
   systemConfigStub,
 } from '../../test';
 import { IAssetRepository } from '../asset';
 import { StorageTemplateService } from '../storage-template';
 import { IStorageRepository } from '../storage/storage.repository';
 import { ISystemConfigRepository } from '../system-config';
+import { IUserRepository } from '../user';
 
 describe(StorageTemplateService.name, () => {
   let sut: StorageTemplateService;
   let assetMock: jest.Mocked<IAssetRepository>;
   let configMock: jest.Mocked<ISystemConfigRepository>;
   let storageMock: jest.Mocked<IStorageRepository>;
+  let userMock: jest.Mocked<IUserRepository>;
 
   it('should work', () => {
     expect(sut).toBeDefined();
@@ -25,7 +28,9 @@ describe(StorageTemplateService.name, () => {
     assetMock = newAssetRepositoryMock();
     configMock = newSystemConfigRepositoryMock();
     storageMock = newStorageRepositoryMock();
-    sut = new StorageTemplateService(assetMock, configMock, systemConfigStub.defaults, storageMock);
+    userMock = newUserRepositoryMock();
+
+    sut = new StorageTemplateService(assetMock, configMock, systemConfigStub.defaults, storageMock, userMock);
   });
 
   describe('handle template migration', () => {

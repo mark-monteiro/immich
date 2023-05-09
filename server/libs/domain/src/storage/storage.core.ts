@@ -10,7 +10,7 @@ export enum StorageFolder {
 }
 
 export class StorageCore {
-  getFolderLocation(folder: StorageFolder, userId: string) {
-    return join(APP_MEDIA_LOCATION, folder, userId);
+  getFolderLocation(folder: StorageFolder, user: string) {
+    return join(APP_MEDIA_LOCATION, folder, user);
   }
 }

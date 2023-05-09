@@ -3801,6 +3801,10 @@
           "lastName": {
             "type": "string"
           },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
           "createdAt": {
             "type": "string"
           },
@@ -3829,6 +3833,7 @@
           "email",
           "firstName",
           "lastName",
+          "username",
           "createdAt",
           "profileImagePath",
           "shouldChangePassword",
@@ -5157,20 +5162,19 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "example": "testuser@email.com"
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "example": "password"
+            "type": "string"
           },
           "firstName": {
-            "type": "string",
-            "example": "John"
+            "type": "string"
           },
           "lastName": {
-            "type": "string",
-            "example": "Doe"
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
           }
         },
         "required": [
@@ -5194,22 +5198,6 @@
       "UpdateUserDto": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string",
-            "example": "testuser@email.com"
-          },
-          "password": {
-            "type": "string",
-            "example": "password"
-          },
-          "firstName": {
-            "type": "string",
-            "example": "John"
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Doe"
-          },
           "id": {
             "type": "string",
             "format": "uuid"
@@ -5219,6 +5207,21 @@
           },
           "shouldChangePassword": {
             "type": "boolean"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
           }
         },
         "required": [

@@ -45,6 +45,10 @@ export class UserCore {
         dto.password = await this.cryptoRepository.hashBcrypt(dto.password, SALT_ROUNDS);
       }
 
+      if (dto.username === '') {
+        dto.username = null;
+      }
+
       return this.userRepository.update(id, dto);
     } catch (e) {
       Logger.error(e, 'Failed to update user info');

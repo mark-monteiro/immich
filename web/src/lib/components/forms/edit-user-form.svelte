@@ -17,8 +17,8 @@
 
 	const editUser = async () => {
 		try {
-			const { id, email, firstName, lastName } = user;
-			const { status } = await api.userApi.updateUser({ id, email, firstName, lastName });
+			const { id, email, firstName, lastName, username } = user;
+			const { status } = await api.userApi.updateUser({ id, email, firstName, lastName, username });
 
 			if (status === 200) {
 				dispatch('edit-success');
@@ -78,6 +78,17 @@
 				name="email"
 				type="email"
 				bind:value={user.email}
+			/>
+		</div>
+
+		<div class="m-4 flex flex-col gap-2">
+			<label class="immich-form-label" for="lastName">Username</label>
+			<input
+				class="immich-form-input"
+				id="username"
+				name="username"
+				type="text"
+				bind:value={user.username}
 			/>
 		</div>
 

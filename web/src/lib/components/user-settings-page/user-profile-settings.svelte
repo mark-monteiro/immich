@@ -19,7 +19,8 @@
 				id: user.id,
 				email: user.email,
 				firstName: user.firstName,
-				lastName: user.lastName
+				lastName: user.lastName,
+				username: user.username
 			});
 
 			Object.assign(user, data);
@@ -49,6 +50,13 @@
 					inputType={SettingInputFieldType.EMAIL}
 					label="EMAIL"
 					bind:value={user.email}
+				/>
+
+				<SettingInputField
+					inputType={SettingInputFieldType.TEXT}
+					label="USERNAME"
+					bind:value={user.username}
+					required={false}
 				/>
 
 				<SettingInputField
